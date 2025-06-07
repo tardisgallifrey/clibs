@@ -1,0 +1,11 @@
+#!/bin/bash
+cd build
+ 
+    cmake ..
+ 
+if [[ -f "Makefile" ]]; then
+    make
+else
+    echo "Makefile does not exist"
+    exit
+fi
