@@ -11,7 +11,6 @@ struct Node {
 int main(void){
  
     struct Node* listArray[5];      // Declare an array of five Node pointers
-    //struct Node* listArray = (struct Node*)malloc(sizeof(struct Node) * 5);
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));   //declare head struct
 
     // Used a for loop to create five Nodes
