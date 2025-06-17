@@ -1,51 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//  A demo of the simplest form of building a linked list
+//  in C.  The only function is just to print out the
+//  linked list from head to tail.
+
 // Define a struct
 // do not forget semicolon after closing brace
 struct Node {
     int data;
-    struct Node* next;
+    struct Node* next;     //  This links a node to another node
 };
 
+
+//  function declarations
+struct Node* createNode(int value);
+void printList(struct Node* head_node);
+
+
+//  main program
 int main(void){
  
     struct Node* listArray[5];      // Declare an array of five Node pointers
-    //struct Node* listArray = (struct Node*)malloc(sizeof(struct Node) * 5);
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));   //declare head struct
 
     // Used a for loop to create five Nodes
     for( int i = 0; i < 5; i++){
-        listArray[i] = (struct Node*)malloc(sizeof(struct Node));
-        listArray[i]->data = (i + 1) * 100;
-        listArray[i]->next = NULL;     // All nodes point to NULL
+        listArray[i] = (struct Node*)malloc(sizeof(struct Node));  // malloc is best to declare
+                                                                   // node in memory
+        listArray[i]->data = (i + 1) * 100;     //  Data is integers by index + 1 * 100
+        listArray[i]->next = NULL;              // All new nodes point to NULL
     }
 
 
-    // Head is empty (NULL) so just assign newNode to head
-    head = listArray[0];    // definition: copy newNode into head's location
-                            // listArray[0]->next = NULL
+    // Head is empty (NULL) so just assign a new node as the head
+    head = listArray[0];    // definition: copy the node into head's location
+                            // listArray[0]->next points to NULL
 
     //head is not empty (NULL)
-    head = listArray[1];         // copy next node to head
-    head->next = listArray[0];   // point node to previous node address
+    listArray[1]->next = head;
+    head = listArray[1];
 
+    // add another node to linked list
+    // all new nodes become head and the list moves down
+    listArray[2]->next = head;
     head = listArray[2];
-    listArray[1]->next = listArray[0];    // As list grows, point previous head node to 
-                                          // next node in list
-    head->next = listArray[1];
 
+    listArray[3]->next = head;
     head = listArray[3];
-    listArray[2]->next = listArray[1];
-    head->next = listArray[2];
 
+    listArray[4]->next = head;
     head = listArray[4];
-    listArray[3]->next = listArray[2];
-    head->next = listArray[3];
 
-    printf("Head data value is: %d\n", head->data);
-    printf("Tail data value is: %d\n", listArray[0]->data);
-    printf("Data: %d\n", head->next->next->data);
+    printf("Printing linked list (head is first number):\n");
+    printList(head);
 
     return 0;
+}
+
+//  How list is printed function
+void printList(struct Node* head_node){
+    do{
+        printf(" %d -- ", head_node->data);  //  print head_node Data
+        head_node = head_node->next;         //  point head_node to next in list
+    }while(head_node->next != NULL);
+
+    printf("%d\n", head_node->data);
 }
