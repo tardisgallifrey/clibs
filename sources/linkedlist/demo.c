@@ -8,10 +8,14 @@ struct Node {
     struct Node* next;
 };
 
+struct Node* createNode(int value);
+void printList(struct Node* head_node);
+
 int main(void){
  
     struct Node* listArray[5];      // Declare an array of five Node pointers
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));   //declare head struct
+    struct Node* temp;
 
     // Used a for loop to create five Nodes
     for( int i = 0; i < 5; i++){
@@ -26,25 +30,30 @@ int main(void){
                             // listArray[0]->next = NULL
 
     //head is not empty (NULL)
-    head = listArray[1];         // copy next node to head
-    head->next = listArray[0];   // point node to previous node address
+    listArray[1]->next = head;
+    head = listArray[1];
 
+    listArray[2]->next = head;
     head = listArray[2];
-    listArray[1]->next = listArray[0];    // As list grows, point previous head node to 
-                                          // next node in list
-    head->next = listArray[1];
 
+    listArray[3]->next = head;
     head = listArray[3];
-    listArray[2]->next = listArray[1];
-    head->next = listArray[2];
 
+    listArray[4]->next = head;
     head = listArray[4];
-    listArray[3]->next = listArray[2];
-    head->next = listArray[3];
 
-    printf("Head data value is: %d\n", head->data);
-    printf("Tail data value is: %d\n", listArray[0]->data);
-    printf("Data: %d\n", head->next->next->data);
+    printf("Printing linked list (head is first number):\n");
+    printList(head);
 
     return 0;
+}
+
+
+void printList(struct Node* head_node){
+    do{
+        printf(" %d -- ", head_node->data);
+        head_node = head_node->next;
+    }while(head_node->next != NULL);
+
+    printf("%d\n", head_node->data);
 }
