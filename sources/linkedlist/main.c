@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//  A demo of the simplest form of building a linked list
-//  in C.  The only function is just to print out the
-//  linked list from head to tail.
 
 // Define a struct
 // do not forget semicolon after closing brace
@@ -16,6 +13,7 @@ struct Node {
 //  function declarations
 struct Node* createNode(int value);
 void printList(struct Node* head_node);
+struct Node* addAtHead(struct Node* newNode, struct Node* head_node);
 
 
 //  main program
@@ -26,31 +24,18 @@ int main(void){
 
     // Used a for loop to create five Nodes
     for( int i = 0; i < 5; i++){
-        listArray[i] = (struct Node*)malloc(sizeof(struct Node));  // malloc is best to declare
-                                                                   // node in memory
-        listArray[i]->data = (i + 1) * 100;     //  Data is integers by index + 1 * 100
-        listArray[i]->next = NULL;              // All new nodes point to NULL
+        listArray[i] = createNode((i + 1) * 100);  
     }
 
 
     // Head is empty (NULL) so just assign a new node as the head
-    head = listArray[0];    // definition: copy the node into head's location
-                            // listArray[0]->next points to NULL
+    head = addAtHead(listArray[0], head);
 
     //head is not empty (NULL)
-    listArray[1]->next = head;
-    head = listArray[1];
-
-    // add another node to linked list
-    // all new nodes become head and the list moves down
-    listArray[2]->next = head;
-    head = listArray[2];
-
-    listArray[3]->next = head;
-    head = listArray[3];
-
-    listArray[4]->next = head;
-    head = listArray[4];
+    //head = addAtHead(listArray[1], head);
+    //head = addAtHead(listArray[2], head);
+    //head = addAtHead(listArray[3], head);
+    //head = addAtHead(listArray[4], head);
 
     printf("Printing linked list (head is first number):\n");
     printList(head);
@@ -66,4 +51,27 @@ void printList(struct Node* head_node){
     }while(head_node->next != NULL);
 
     printf("%d\n", head_node->data);
+}
+
+//  How to create a new Node
+//  new Nodes have NULL next pointers
+
+struct Node* createNode(int value){
+    
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));   //declare head struct
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+
+}
+
+
+struct Node* addAtHead(struct Node* newNode, struct Node* head_node){
+    if(head_node->next == NULL){
+        head_node = newNode;
+    }else{
+        newNode->next = head_node;
+        head_node = newNode;
+    }
+    return head_node;
 }
