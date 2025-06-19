@@ -20,7 +20,7 @@ struct Node* addAtHead(struct Node* newNode, struct Node* head_node);
 int main(void){
  
     struct Node* listArray[5];      // Declare an array of five Node pointers
-    struct Node* head = (struct Node*)malloc(sizeof(struct Node));   //declare head struct
+    struct Node* head = createNode(55);
 
     // Used a for loop to create five Nodes
     for( int i = 0; i < 5; i++){
@@ -28,10 +28,8 @@ int main(void){
     }
 
 
-    // Head is empty (NULL) so just assign a new node as the head
-    head = listArray[0];      // head is a special case, just assign it for now
-
     //head is not empty (NULL)
+    head = addAtHead(listArray[0], head);
     head = addAtHead(listArray[1], head);
     head = addAtHead(listArray[2], head);
     head = addAtHead(listArray[3], head);
