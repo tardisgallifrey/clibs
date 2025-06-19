@@ -29,13 +29,13 @@ int main(void){
 
 
     // Head is empty (NULL) so just assign a new node as the head
-    head = addAtHead(listArray[0], head);
+    head = listArray[0];      // head is a special case, just assign it for now
 
     //head is not empty (NULL)
-    //head = addAtHead(listArray[1], head);
-    //head = addAtHead(listArray[2], head);
-    //head = addAtHead(listArray[3], head);
-    //head = addAtHead(listArray[4], head);
+    head = addAtHead(listArray[1], head);
+    head = addAtHead(listArray[2], head);
+    head = addAtHead(listArray[3], head);
+    head = addAtHead(listArray[4], head);
 
     printf("Printing linked list (head is first number):\n");
     printList(head);
@@ -45,6 +45,7 @@ int main(void){
 
 //  How list is printed function
 void printList(struct Node* head_node){
+    
     do{
         printf(" %d -- ", head_node->data);  //  print head_node Data
         head_node = head_node->next;         //  point head_node to next in list
@@ -52,6 +53,7 @@ void printList(struct Node* head_node){
 
     printf("%d\n", head_node->data);
 }
+
 
 //  How to create a new Node
 //  new Nodes have NULL next pointers
@@ -67,11 +69,8 @@ struct Node* createNode(int value){
 
 
 struct Node* addAtHead(struct Node* newNode, struct Node* head_node){
-    if(head_node->next == NULL){
-        head_node = newNode;
-    }else{
-        newNode->next = head_node;
-        head_node = newNode;
-    }
+    newNode->next = head_node;
+    head_node = newNode;
+
     return head_node;
 }
