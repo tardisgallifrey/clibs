@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gzip *.3
+cp *.gz /usr/share/man/man3/
+

@@ -1,0 +1,26 @@
+./" Man page for Dave's C linked list library"
+.TH man 3 "21 June 2025" "1.0" "C linked list man page"
+.SH NAME
+Dave's linked list library in C  
+.SH SYNOPSIS
+gcc -o yourProgname -l[correct library name] yourProgname.c
+.SH DESCRIPTION
+This is a mostly useless, but helpful shared library, written in C, on the use of linked lists in C.
+.SH OPTIONS
+libraries:
+
+.\" Wish to turn this into a table
+.
+.TS
+l.
+libraryName = -l[correct library name]
+libllint.so = -lllint
+.TE
+
+
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+DEV aka tardisgallifrey, https://github.com/tardisgallifrey/clibs.git
+.SH REPORTING BUGS
+https://github.com/tardisgallifrey/clibs/issues

@@ -32,7 +32,8 @@ int main(void){
         listArray[i]->next = NULL;              // All new nodes point to NULL
     }
 
-
+    //  This is add new node at the head stuff
+    //
     // Head is empty (NULL) so just assign a new node as the head
     head = listArray[0];    // definition: copy the node into head's location
                             // listArray[0]->next points to NULL
@@ -52,6 +53,19 @@ int main(void){
     listArray[4]->next = head;
     head = listArray[4];
 
+    //  This is add new node at tail stuff
+    //
+    struct Node* node[5];
+    head = createNode(56);
+
+    for( int i = 0; i < 5; i++){
+        node[i] = createNode((i + 2) * 3);
+    }
+
+    head->next = node[0];
+    node[0]->next = node[1];
+    node[1]->next = node[2];
+
     printf("Printing linked list (head is first number):\n");
     printList(head);
 
@@ -66,4 +80,11 @@ void printList(struct Node* head_node){
     }while(head_node->next != NULL);
 
     printf("%d\n", head_node->data);
+}
+
+struct Node* createNode(int value){
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node*));
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
 }
